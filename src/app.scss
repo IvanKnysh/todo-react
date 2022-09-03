@@ -1,0 +1,39 @@
+.todo {
+  width: 90%;
+  max-width: 800px;
+  display: block;
+  margin: 10px auto;
+  h2 {
+    text-align: center;
+  }
+  .form {
+    margin: 10px 0;
+    input {
+      display: block;
+      width: 100%;
+      padding: 0 15px;
+      height: 40px;
+      font-size: 16px;
+      outline: none;
+      border: none;
+      border-bottom: 2px solid black;
+      &:focus {
+        border-bottom: 2px solid tomato;
+      }
+    }
+  }
+  .todoList {
+    ul.todo__items {
+      list-style-type: none;
+      li {
+        border-radius: 6px;
+        background-color: #c7c7c7;
+        padding: 10px 15px;
+        margin: 10px 0;
+        &.todo__completed {
+          background-color: #f47676;
+        }
+      }
+    }
+  }
+}
