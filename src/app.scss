@@ -26,10 +26,20 @@
     ul.todo__items {
       list-style-type: none;
       li {
+        display: flex;
+        align-items: center;
         border-radius: 6px;
         background-color: #c7c7c7;
         padding: 10px 15px;
         margin: 10px 0;
+        .icon {
+          margin-right: 10px;
+        }
+        .check {
+          display: block;
+          margin-left: auto;
+          cursor: pointer;
+        }
         &.todo__completed {
           background-color: #f47676;
         }

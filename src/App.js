@@ -6,6 +6,12 @@ import './app.scss';
 function App() {
   const [todos, setTodos] = useState([]);
 
+  const checkBtn = (id) => {
+    setTodos(
+      todos.map(item => item.id === id ? {...item, completed: !item.completed} : item)
+    );
+  }
+
   useEffect(() => {
     const row = JSON.parse(localStorage.getItem('Todos'));
     if (row) {
@@ -23,7 +29,7 @@ function App() {
     <div className="todo">
       <h2>Список завань</h2>
       <Form todos={todos} setTodos={setTodos} />
-      <List todos={todos} />
+      <List todos={todos} setTodos={setTodos} checkBtn={checkBtn} />
     </div>
   );
 }
