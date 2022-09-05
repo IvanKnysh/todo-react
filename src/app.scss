@@ -40,6 +40,11 @@
           margin-left: auto;
           cursor: pointer;
         }
+        .remove {
+          display: block;
+          margin-left: 15px;
+          cursor: pointer;
+        }
         &.todo__completed {
           background-color: #f47676;
         }

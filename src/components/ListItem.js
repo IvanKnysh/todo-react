@@ -3,7 +3,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 library.add(fas);
 
-const ListItem = ({id, title, completed, checkBtn}) => {
+const ListItem = ({id, title, completed, checkBtn, deleteItem}) => {
 	const statusTodoItem = completed ? 'todo__completed' : '';
 
 	return (
@@ -14,6 +14,9 @@ const ListItem = ({id, title, completed, checkBtn}) => {
 			{title}
 			<div className="check" onClick={() => checkBtn(id)}>
 				<FontAwesomeIcon icon="fa-solid fa-square-check" />
+			</div>
+			<div className="remove" onClick={() => deleteItem(id)}>
+				<FontAwesomeIcon icon="fa-solid fa-trash" />
 			</div>
 		</li>
 	);

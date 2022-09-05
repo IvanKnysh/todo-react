@@ -12,6 +12,16 @@ function App() {
     );
   }
 
+  const deleteItem = (id) => {
+    setTodos(
+      todos.filter(item => item.id !== id)
+    );
+
+    if (todos.length === 1) {
+      localStorage.setItem('Todos', JSON.stringify([]));
+    }
+  }
+
   useEffect(() => {
     const row = JSON.parse(localStorage.getItem('Todos'));
     if (row) {
@@ -29,7 +39,7 @@ function App() {
     <div className="todo">
       <h2>Список завань</h2>
       <Form todos={todos} setTodos={setTodos} />
-      <List todos={todos} setTodos={setTodos} checkBtn={checkBtn} />
+      <List todos={todos} setTodos={setTodos} checkBtn={checkBtn} deleteItem={deleteItem} />
     </div>
   );
 }
