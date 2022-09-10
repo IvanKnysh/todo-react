@@ -22,16 +22,22 @@ function App() {
     }
   }
 
+  const handlerClick = () => {
+    console.log('click');
+  }
+
   useEffect(() => {
-    const row = JSON.parse(localStorage.getItem('Todos'));
-    if (row) {
-      setTodos(row);
-    }
+    const getData = JSON.parse(localStorage.getItem('Todos')) || [];
+    setTodos(getData);
   }, []);
 
   useEffect(() => {
+    document.addEventListener('click', handlerClick);
     if (todos.length > 0) {
       localStorage.setItem('Todos', JSON.stringify(todos));
+    }
+    return () => {
+      document.removeEventListener('click', handlerClick);
     }
   }, [todos]);
 
