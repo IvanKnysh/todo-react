@@ -4,6 +4,19 @@ import Form from "./components/Form";
 import List from "./components/List";
 import './app.scss';
 
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCZT9cb_r9-3jkorBvO4SssmeCCFI2gAUE",
+  authDomain: "react-todo-7ef07.firebaseapp.com",
+  projectId: "react-todo-7ef07",
+  storageBucket: "react-todo-7ef07.appspot.com",
+  messagingSenderId: "972129768220",
+  appId: "1:972129768220:web:c56a21e51ca768194da0d9"
+};
+
+const app = initializeApp(firebaseConfig);
+
 function App() {
   const [todos, setTodos] = useState([]);
 
