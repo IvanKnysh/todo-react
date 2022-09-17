@@ -2,23 +2,29 @@ import {useEffect, useState} from "react";
 import {Context} from "./Context";
 import Form from "./components/Form";
 import List from "./components/List";
+import Header from "./components/Header";
+import useAuth from "./components/useAuth";
 import './app.scss';
 
-import { initializeApp } from "firebase/app";
+import firebase from 'firebase/compat/app';
+import "firebase/compat/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCZT9cb_r9-3jkorBvO4SssmeCCFI2gAUE",
   authDomain: "react-todo-7ef07.firebaseapp.com",
+  databaseURL: "https://react-todo-7ef07-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "react-todo-7ef07",
   storageBucket: "react-todo-7ef07.appspot.com",
   messagingSenderId: "972129768220",
-  appId: "1:972129768220:web:c56a21e51ca768194da0d9"
+  appId: "1:972129768220:web:a83d319b661503c44da0d9"
 };
 
-const app = initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
 function App() {
   const [todos, setTodos] = useState([]);
+
+  const auth = useAuth(firebase.auth);
 
   const checkBtn = (id) => {
     setTodos(
@@ -50,9 +56,17 @@ function App() {
   return (
     <Context.Provider value={{checkBtn, deleteItem}}>
       <div className="todo">
-        <h2>Список завань</h2>
-        <Form todos={todos} setTodos={setTodos} />
-        <List todos={todos} setTodos={setTodos} />
+        <Header {...auth} />
+        {
+          auth.authentication
+            ?
+            <>
+              <Form todos={todos} setTodos={setTodos} />
+              <List todos={todos} setTodos={setTodos} />
+            </>
+            :
+            <h3>Ви вийшли із системи</h3>
+        }
       </div>
     </Context.Provider>
   );

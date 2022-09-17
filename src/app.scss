@@ -3,8 +3,37 @@
   max-width: 800px;
   display: block;
   margin: 10px auto;
-  h2 {
+  h3 {
     text-align: center;
+    margin-top: 50px;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    p {
+      display: block;
+      margin-left: auto;
+      margin-right: 10px;
+    }
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-right: 20px;
+    }
+    .login {
+      background-color: #c9c9c9;
+      padding: 5px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+      &:hover {
+        background-color: #555555;
+        color: #ffffff;
+      }
+    }
   }
   .form {
     margin: 10px 0;
