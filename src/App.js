@@ -8,6 +8,7 @@ import './app.scss';
 
 import firebase from 'firebase/compat/app';
 import "firebase/compat/auth";
+import "firebase/compat/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCZT9cb_r9-3jkorBvO4SssmeCCFI2gAUE",
@@ -61,7 +62,7 @@ function App() {
           auth.authentication
             ?
             <>
-              <Form todos={todos} setTodos={setTodos} />
+              <Form todos={todos} setTodos={setTodos} authentication={auth.authentication} firebaseDatabase={firebase.database} />
               <List todos={todos} setTodos={setTodos} />
             </>
             :

@@ -1,7 +1,18 @@
 import {useState} from "react";
 
-const Form = ({todos, setTodos}) => {
+const Form = ({todos, setTodos, authentication, firebaseDatabase}) => {
 	const [todoTitle, setTodoTitle] = useState('');
+
+	const dataBase = firebaseDatabase();
+
+	const sendData = (data) => {
+		dataBase.ref('todos').push().set({
+			userName: authentication.displayName,
+			email: authentication.email,
+			title: data.title,
+			completed: data.completed
+		});
+	}
 
 	const addTodo = (e) => {
 		if (e.key === 'Enter' && todoTitle !== '') {
@@ -15,6 +26,11 @@ const Form = ({todos, setTodos}) => {
 			]);
 
 			setTodoTitle('');
+
+			sendData({
+				title: todoTitle,
+				completed: false
+			});
 		}
 	}
 
