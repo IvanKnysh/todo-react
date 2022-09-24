@@ -1,10 +1,18 @@
 import ListItem from "./ListItem";
 
 const List = ({todos}) => {
+	if (!todos) {
+		return (
+			<div className="todoList">
+				<h3>Loading...</h3>
+			</div>
+		);
+	}
+
 	return (
 		<div className="todoList">
 			<ul className="todo__items">
-				{todos.map(item => <ListItem key={item.id} {...item} />)}
+				{Object.keys(todos).map(item => <ListItem key={Date.now()} elem={todos[item]} />)}
 			</ul>
 		</div>
 	);

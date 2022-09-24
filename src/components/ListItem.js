@@ -6,8 +6,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 library.add(fas);
 
-const ListItem = ({id, title, completed}) => {
-	const statusTodoItem = completed ? 'todo__completed' : '';
+const ListItem = ({elem}) => {
+	const statusTodoItem = elem.completed ? 'todo__completed' : '';
 	const {checkBtn, deleteItem} = useContext(Context);
 
 	return (
@@ -15,11 +15,11 @@ const ListItem = ({id, title, completed}) => {
 			<div className="icon">
 				<FontAwesomeIcon icon="fa-solid fa-list-check" />
 			</div>
-			{title}
-			<div className="check" onClick={() => checkBtn(id)}>
+			{elem.title}
+			<div className="check" onClick={() => checkBtn(elem.title)}>
 				<FontAwesomeIcon icon="fa-solid fa-square-check" />
 			</div>
-			<div className="remove" onClick={() => deleteItem(id)}>
+			<div className="remove" onClick={() => deleteItem(elem.title)}>
 				<FontAwesomeIcon icon="fa-solid fa-trash" />
 			</div>
 		</li>

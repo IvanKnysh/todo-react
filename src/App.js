@@ -4,6 +4,7 @@ import Form from "./components/Form";
 import List from "./components/List";
 import Header from "./components/Header";
 import useAuth from "./components/useAuth";
+import useDB from "./components/useDB";
 import './app.scss';
 
 import firebase from 'firebase/compat/app';
@@ -24,8 +25,11 @@ firebase.initializeApp(firebaseConfig);
 
 function App() {
   const [todos, setTodos] = useState([]);
-
   const auth = useAuth(firebase.auth);
+  const database = firebase.database();
+
+  const todoData = useDB(database);
+  console.dir(todoData);
 
   const checkBtn = (id) => {
     setTodos(
@@ -62,8 +66,8 @@ function App() {
           auth.authentication
             ?
             <>
-              <Form todos={todos} setTodos={setTodos} authentication={auth.authentication} firebaseDatabase={firebase.database} />
-              <List todos={todos} setTodos={setTodos} />
+              <Form todos={todos} setTodos={setTodos} authentication={auth.authentication} database={database} />
+              <List todos={todoData} />
             </>
             :
             <h3>Ви вийшли із системи</h3>

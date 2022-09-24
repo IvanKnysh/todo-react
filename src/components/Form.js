@@ -1,12 +1,10 @@
 import {useState} from "react";
 
-const Form = ({todos, setTodos, authentication, firebaseDatabase}) => {
+const Form = ({todos, setTodos, authentication, database}) => {
 	const [todoTitle, setTodoTitle] = useState('');
 
-	const dataBase = firebaseDatabase();
-
 	const sendData = (data) => {
-		dataBase.ref('todos').push().set({
+		database.ref('todos').push().set({
 			userName: authentication.displayName,
 			email: authentication.email,
 			title: data.title,
